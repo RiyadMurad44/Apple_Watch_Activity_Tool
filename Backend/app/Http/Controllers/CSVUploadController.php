@@ -12,7 +12,7 @@ class CSVUploadController extends Controller
     public function upload(CSVUploadRequest $request)
     {
         $file = $request->file('file');
-        $path = $file->storeAs('uploads/csv', time() . '-' . $file->getClientOriginalName());
+        // $path = $file->storeAs('uploads/csv', time() . '-' . $file->getClientOriginalName());
 
         $success = $this->processCSV($file);
 
@@ -23,8 +23,7 @@ class CSVUploadController extends Controller
         }
     }
 
-    protected function processCSV($file)
-    {
+    protected function processCSV($file){
         $handle = fopen($file->getPathname(), 'r');
 
         if ($handle === false) {
